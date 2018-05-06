@@ -23,7 +23,7 @@ const BookSchema = new Schema({
         type: Number,
         min: 1,
         max:5,
-        require: true
+        required: true
     },
     price:{
         type: Number, 
@@ -35,4 +35,5 @@ const BookSchema = new Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.Schema('Book', BookSchema);
+
+module.exports = mongoose.model('Book', BookSchema);
