@@ -4,7 +4,7 @@ var router = express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 
-/* GET users listing. */
+
 router.post('/register', function(req, res, next) {
   const user = new User(req.body);
   user.save(function(err, user) {
@@ -35,6 +35,16 @@ router.get('/logout',auth, function(req, res, next) {
     res.json({
       user: user
     });
+  });
+});
+
+router.get('/auth', auth, function(req, res, next) {
+  res.json({
+    isAuth: true,
+    id: req.user._id,
+    email: req.user.email,
+    lastname: req.user.lastname,
+    firstname: req.user.firstname,
   });
 });
 
