@@ -73,4 +73,22 @@ UserSchema.methods.generateToken = function(cb) {
     });
 }
 
+UserSchema.statics.findByToken = function(token, cb) {
+    let user = this;
+    jwt.verify(token, 'secret', function (err, decoded) {
+        user.findOne({_id: decoded, token: token}, function(err, user) {
+            if(err) return cb(err);
+            cb(null, user);
+        });
+    });
+}
+
+UserSchema.methods.deleteToken = function(cb) {
+    let user = this;
+    user.update({$unset: {token: true}}, function(err, user) {
+        if(err) return cb(err);
+        cb(null, user);
+    });
+}
+
 module.exports = mongoose.model('User', UserSchema);

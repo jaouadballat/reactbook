@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const User = require('../models/user');
+const auth = require('../middleware/auth');
 
 /* GET users listing. */
 router.post('/register', function(req, res, next) {
@@ -25,6 +26,15 @@ router.post('/login', function(req, res, next) {
           res.json({isAuth: true, id: user._id, email: user.email});
         });
       });
+  });
+});
+
+router.get('/logout',auth, function(req, res, next) {
+  req.user.deleteToken(function(err, user) {
+    if(err) return res.send(err);
+    res.json({
+      user: user
+    });
   });
 });
 
