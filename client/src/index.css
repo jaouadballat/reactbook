@@ -3,3 +3,14 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+a{
+  text-decoration: none;
+  color: #868585;
+}
+
+.navItem{
+  border-bottom: 1px solid #868585;
+  padding: 10px;
+}
+

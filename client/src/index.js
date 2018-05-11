@@ -8,14 +8,14 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import reducers from './reducers';
 
 import Routes from './routes';
+import './index.css'
 
 const store = createStore(reducers, applyMiddleware(logger));
  
-
 ReactDOM.render(
     <Provider store={store}>
             <Router>
-                <Routes />
+                <Routes/>
             </Router>
     </Provider>
     , document.getElementById('root'));
