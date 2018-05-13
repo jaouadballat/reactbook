@@ -29,10 +29,7 @@ const BookSchema = new Schema({
         type: Number, 
         required: true
     },
-    ownerId:{
-        type: Number,
-        required: true
-    }
+    owner: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: true});
 
 

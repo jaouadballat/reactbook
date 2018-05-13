@@ -45,10 +45,12 @@ router.delete('/delete-book', function(req, res, next) {
 
 router.get('/getBook', function(req, res, next) {
   let id = req.query.id;
-  Book.findById(id, function(err, book) {
-    if(err) return res.status(400).send(err);
-    res.status(200).json({response: true, book: book});
-  });
+  Book.findById(id)
+    .populate('owner', '-password -email')
+    .exec(function(err, book) {
+      if(err) return res.status(400).send(err);
+        res.status(200).json({response: true, book: book});
+      });
 });
 
 router.post('/', function(req, res, next) {
