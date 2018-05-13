@@ -16,3 +16,13 @@ export function getBooks(skip=0, limit=3, order='desc', books=[]) {
             });
     }
 }
+
+
+export function getBookWithReviewer(id) {
+    return function(dispatch) {
+        Api().get(`/books/getBook?id=${id}`)
+            .then(response => {
+                console.log(response.data);
+            });
+    }
+}

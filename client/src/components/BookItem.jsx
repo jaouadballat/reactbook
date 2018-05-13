@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const BookItem = (book) => {
     return(
             <Col sm="12" className="mt-3">
-                <Link to={`/books/getBook?id=${book._id}`}>
+                <Link to={`/book/${book._id}`}>
                     <Card>
                         <CardBody>
                             <CardTitle>{book.name}</CardTitle>
