@@ -9,7 +9,9 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import reducers from './reducers';
 
 import Routes from './routes';
-import './index.css'
+import './index.css';
+
+
 
 const store = createStore(reducers, applyMiddleware(logger, Thunk));
  
