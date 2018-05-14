@@ -29,10 +29,9 @@ class Login extends Component {
   
 
     componentWillReceiveProps(props) {
-        console.log(props);
        if(props.user.isAuth) {
-           props.history.push('/')
-           
+           localStorage.setItem('token', props.user.token)
+           props.history.push('/');
        }else {
            this.setState({message: props.user.message})
        }

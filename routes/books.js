@@ -8,8 +8,7 @@ router.get('/', function(req, res, next) {
   let skip = parseInt(req.query.skip);
   let limit = parseInt(req.query.limit);
   let order = req.query.order;
-  console.log(order);
-
+  
   Book.find()
         .skip(skip)
         .limit(limit)

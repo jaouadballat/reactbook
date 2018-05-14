@@ -13,19 +13,27 @@ router.post('/register', function(req, res, next) {
   });
 });
 
-router.post('/login', function(req, res, next) {
-  let email = req.body.email;
-  let password = req.body.password;
-  User.findOne({email: email}, function(err, user) {
-    if(!user) return res.send({isAuth: false, message: 'Auth failed, Email incorrect'});
-      user.comparePassword(password, function (err, isMatch) {
-        if (!isMatch) return res.json({ isAuth: false, message: 'Wrong Password' });
-        user.generateToken(function(err, user) {
-          if(err) return res.send(err);
-          res.cookie('auth', user.token);
-          res.json({isAuth: true, id: user._id, email: user.email});
+router.post('/login', (req, res) => {
+  res.cookie('lala', 'lala')
+  User.findOne({ 'email': req.body.email }, (err, user) => {
+    if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' })
+
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if (!isMatch) return res.json({
+        isAuth: false,
+        message: 'Wrong password'
+      });
+
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err);
+        res.json({
+          isAuth: true,
+          id: user._id,
+          email: user.email,
+          token: user.token
         });
       });
+    });
   });
 });
 
