@@ -14,7 +14,6 @@ router.post('/register', function(req, res, next) {
 });
 
 router.post('/login', (req, res) => {
-  res.cookie('lala', 'lala')
   User.findOne({ 'email': req.body.email }, (err, user) => {
     if (!user) return res.json({ isAuth: false, message: 'Auth failed, email not found' })
 

@@ -3,11 +3,14 @@ import SideNav from 'react-simple-sidenav';
 import FontAwesome from 'react-fontawesome';
 import {Link} from 'react-router-dom';
 
+
+
 const Nav = (props) => {
+
     return (
         <SideNav showNav={props.showNav} 
-            onHideNav={props.onHideNav}
-            navStyle={{background:'#2b2b2b'}}
+        onHideNav={props.onHideNav}
+        navStyle={{background:'#2b2b2b'}}
         >
             <Link to="/" className="navItem">
                 <FontAwesome name="home"
@@ -16,7 +19,8 @@ const Nav = (props) => {
                         color: '#868585',
                         cursor: 'pointer'
                     }}
-                />
+                    />
+                    
                 Home
             </Link>
             <Link to="/user" className="navItem">

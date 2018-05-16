@@ -7,24 +7,23 @@ import {getBooks} from '../actions/books';
 import BookItem from './BookItem';
 
 class Home extends React.Component {
-
     componentWillMount() {
         this.props.getBooks(0,1);
     }
- 
+    
     renderBooks() {
         if(this.props.books) {
-           return this.props.books.map(book => (
-               <BookItem {...book} key={book._id}/>
-           ))
+            return this.props.books.map(book => (
+                <BookItem {...book} key={book._id}/>
+            ))
         }
     }
-
+    
     loadMore = () => {
         let books = this.props.books;
         this.props.getBooks(0, 2, 'desc',books);
     }
-
+    
     render() {
         return (
             <Container>
