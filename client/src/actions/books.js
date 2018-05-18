@@ -9,11 +9,6 @@ export function getBooks(skip=0, limit=3, order='desc', books=[]) {
             .get(`/books?skip=${skip}&limit=${limit}&order=${order}`)
             .then(response => {
                 let newBooks = response.data.books
-                let token = localStorage.getItem('token')
-                Api().get('/users/auth?token='+token)
-                    .then(response => {
-                        console.log(response.data);
-                    })
                 dispatch({
                     type: 'GET_BOOKS',
                     payload:  [...books, ...newBooks]

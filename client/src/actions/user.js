@@ -6,6 +6,7 @@ export function userLogin({email, password}) {
     return function(dispatch) {
         Api().post('/users/login', {email, password})
             .then(response => {
+                localStorage.setItem('token', response.data.token)
                 dispatch({
                     type: 'USER_LOGIN',
                     payload: response.data
@@ -18,7 +19,8 @@ export function userLogin({email, password}) {
 
 export function userAuth() {
     return function(dispatch) {
-        Api().get('/users/auth')
+        let token = localStorage.getItem('token');
+        Api().get('/users/auth?token='+token)
             .then(response => {
                 dispatch({
                     type: 'USER_AUTH',
