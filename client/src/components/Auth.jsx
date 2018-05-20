@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import { userAuth } from '../actions/user';
 
-export default function (Component) {
+export default function (ComponentClass) {
 
     class AuthRoute extends Component {
 
@@ -14,21 +14,17 @@ export default function (Component) {
         }
 
         componentWillReceiveProps(nextProps) {
-            this.setState({isLoading: false})
             if(!nextProps.user.isAuth) {
-                this.props.history.push('/login')
+                nextProps.history.push('/login')
             }
         }
 
-         state = {
-            isLoading: true
-        }
-   
+        
+
         render() {
-            
 
             return (
-                <Component {...this.props} />
+                this.props.user ? <ComponentClass {...this.props} /> : <div>Loading...</div>
             )
            
         }
