@@ -12,14 +12,23 @@ export default function (Component) {
         componentWillMount() {
             this.props.userAuth();
         }
-        
+
+        componentWillReceiveProps(nextProps) {
+            this.setState({isLoading: false})
+            if(!nextProps.user.isAuth) {
+                this.props.history.push('/login')
+            }
+        }
+
+         state = {
+            isLoading: true
+        }
+   
         render() {
+            
 
             return (
-            this.props.user ? 
-                <Component {...this.props} /> 
-                : 
-                <Redirect to="/login" />
+                <Component {...this.props} />
             )
            
         }
