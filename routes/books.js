@@ -63,4 +63,12 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.get('/user_books', function (req, res, next) {
+  const userId = req.query.user;
+  Book.find({ owner: userId }, function (err, books) {
+    if (err) return res.send(err)
+    res.json(books)
+  });
+});
+
 module.exports = router;

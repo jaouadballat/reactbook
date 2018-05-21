@@ -7,6 +7,9 @@ import Layout from '../components/Layout';
 import Login from '../components/Login';
 import Auth from '../components/Auth';
 import Profile from '../components/Profile';
+import AddBook from '../components/AddBook';
+import UserBooks from '../components/UserBooks';
+import EditBook from '../components/EditBook';
 
 const Routes = () => {
     return (
@@ -14,6 +17,9 @@ const Routes = () => {
             <Switch>
                 <Route path='/profile' component={Auth(Profile)} />
                 <Route path='/book/:id' component={Auth(Book)} />
+                <Route path='/addbook' component={Auth(AddBook)} />
+                <Route path='/userbooks' component={Auth(UserBooks)} />
+                <Route path='/edit-book/:id' component={Auth(EditBook)} />
                 <Route path='/login' component={Login} />
                 <Route path='/' component={Auth(Home)} />
             </Switch>

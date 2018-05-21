@@ -25,7 +25,56 @@ export function getBookWithReviewer(id) {
                 dispatch({
                     type: 'GET_BOOK',
                     payload: response.data.book
-                })
+                });
             });
     }
 }
+
+export function addBook(book) {
+    return function(dispatch) {
+        Api().post('/books', {...book})
+            .then(response => {
+                dispatch({
+                    type: 'ADD_BOOK',
+                    payload: response.data
+                });
+            }).catch(errors => {
+                console.log(errors.message);
+            })
+    }
+}
+
+export function userBooks(userId) {
+    return function(dispatch) {
+        Api().get(`/books/user_books?user=${userId}`)
+        .then(response => {
+            dispatch({
+                type: 'USER_BOOKS',
+                payload: response.data
+            });
+        });
+    }
+}
+
+export function updateBook(book) {
+    return function(dispatch) {
+        Api().put('/books/update-book', {...book})
+            .then(response => {
+                dispatch({
+                    type: 'UPDATE_BOOK',
+                    payload: response.data
+                });
+            });
+    }
+}
+
+export function deleteBook(BookId) {
+    return function(dispatch) {
+        Api().delete(`/books/delete-book?id=${BookId}`)
+            .then(response => {
+                dispatch({
+                    type: 'DELETE_BOOK'
+                });
+            });
+    }
+} 
