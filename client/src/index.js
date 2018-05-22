@@ -4,9 +4,9 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 import Thunk from 'redux-thunk';
-import {BrowserRouter as Router} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 
 
 
@@ -16,18 +16,21 @@ import Routes from './routes';
 import './index.css';
 
 
-const history = createHistory();
-const middleware = routerMiddleware(history);
+// Create a history of your choosing (we're using a browser history in this case)
+const history = createHistory()
+
+// Build the middleware for intercepting and dispatching navigation actions
+const middleware = routerMiddleware(history)
 
 
-const store = createStore(reducers, applyMiddleware(logger, Thunk, middleware));
+
+const store = createStore(reducers, applyMiddleware(middleware,logger, Thunk));
  
 ReactDOM.render(
     <Provider store={store}>
-            <ConnectedRouter history={history}>
-            <Router>
+        <ConnectedRouter history={history}>
                 <Routes />
-            </Router>
-            </ConnectedRouter>
+        </ConnectedRouter>
+
     </Provider>
     , document.getElementById('root'));

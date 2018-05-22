@@ -1,4 +1,6 @@
 import Api from '../config/Api';
+import { push } from 'react-router-redux'
+
 
 export function getBooks(skip=0, limit=3, order='desc', books=[]) {
     if(books.length > 0) {
@@ -13,6 +15,7 @@ export function getBooks(skip=0, limit=3, order='desc', books=[]) {
                     type: 'GET_BOOKS',
                     payload:  [...books, ...newBooks]
                 });
+                
             });
     }
 }
@@ -65,6 +68,7 @@ export function updateBook(book) {
                     payload: response.data
                 });
             });
+            dispatch(push('/userbooks'))
     }
 }
 

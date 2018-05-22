@@ -34,14 +34,14 @@ class EditBook extends React.Component {
     handleSumbit = (e) => {
         e.preventDefault();
         this.props.updateBook(this.state);
-        this.props.history.push('/userbooks')
+        //this.props.history.push('/userbooks')
 
     }
 
     handleDelete = (e) => {
         e.preventDefault();
         this.props.deleteBook(this.props.book._id)
-        this.props.history.push('/userbooks')
+        //this.props.history.push('/userbooks')
 
     }
 
