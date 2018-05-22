@@ -1,4 +1,5 @@
 import Api from '../config/Api';
+import { push } from 'react-router-redux'
 
 
 export function userLogin({email, password}) {
@@ -27,5 +28,29 @@ export function userAuth() {
                     payload: response.data
                 })
             })
+    }
+}
+export function userRegister(data) {
+    return function(dispatch) {
+        Api().post('/users/register', data)
+            .then(response => {
+                dispatch({
+                    type: 'USER_REGISTER',
+                    payload: response.data
+                });
+            });
+    }
+}
+
+export function userLogout() {
+    return function(dispatch) {
+        Api().get('/users/logout')
+            .then(response => {
+                localStorage.removeItem('token')
+                dispatch({
+                    type: 'USER_LOGOUT'
+                });
+                dispatch(push('/'))
+            });
     }
 }

@@ -6,85 +6,97 @@ import {Link} from 'react-router-dom';
 
 
 const Nav = (props) => {
-
+    
+    if(props.user)
     return (
-        <SideNav showNav={props.showNav} 
-        onHideNav={props.onHideNav}
-        navStyle={{background:'#2b2b2b'}}
-        >
-            <Link to="/" className="navItem">
-                <FontAwesome name="home"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
+        props.user.isAuth ?
+            <SideNav showNav={props.showNav}
+                onHideNav={props.onHideNav}
+                navStyle={{ background: '#2b2b2b' }}
+            >
+                <Link to="/" className="navItem">
+                    <FontAwesome name="home"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
                     />
-                    
-                Home
+
+                    Home
             </Link>
-            <Link to="/user" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                My Profile
+                <Link to="/profile" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    My Profile
             </Link>
-            <Link to="/" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                Add Admin
+                <Link to="/userbooks" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    My Reviews
             </Link>
-            <Link to="/" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                Login
+                <Link to="/addbook" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    Add Reviews
             </Link>
-            <Link to="/" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                My Reviews
+                <Link to="/logout" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    Logout
             </Link>
-            <Link to="/" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                Add Reviews
+            </SideNav>
+            :
+            <SideNav showNav={props.showNav}
+                onHideNav={props.onHideNav}
+                navStyle={{ background: '#2b2b2b' }}
+            >
+                <Link to="/register" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    Register
             </Link>
-            <Link to="/" className="navItem">
-                <FontAwesome name="file"
-                    style={{
-                        padding: '10px',
-                        color: '#868585',
-                        cursor: 'pointer'
-                    }}
-                />
-                Logout
+                <Link to="/login" className="navItem">
+                    <FontAwesome name="file"
+                        style={{
+                            padding: '10px',
+                            color: '#868585',
+                            cursor: 'pointer'
+                        }}
+                    />
+                    Login
             </Link>
-        </SideNav>
+            </SideNav>
             
+    )
+    else 
+    return (
+        <div></div>
     )
 }
 

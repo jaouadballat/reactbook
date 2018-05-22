@@ -24,8 +24,6 @@ class AddBook extends React.Component {
         e.preventDefault();
         let owner = this.props.user.id
         this.props.addBook({ ...this.state, owner })
-        this.props.getBooks(0, 1);
-        this.props.history.push('/')
     }
 
     render() {

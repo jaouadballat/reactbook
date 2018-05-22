@@ -1,6 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 import Nav from './SideNav';
 
@@ -34,11 +36,18 @@ class Header extends React.Component {
                 </header> 
                 <Nav showNav={this.state.showNav}
                     onHideNav={this.onHideNav}
+                    user={this.props.userAuth}
                 />
             </div>
         )
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        userAuth: state.users.user
+    }
+}
 
-export default Header;
+
+export default connect(mapStateToProps)(Header);

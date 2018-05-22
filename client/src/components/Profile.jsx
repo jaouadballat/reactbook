@@ -7,7 +7,6 @@ import {
 
 
 const Profile = (props ) => {
-    console.log(props);
         return (
             <Container className="mt-2">
                 <Card>

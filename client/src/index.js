@@ -22,8 +22,6 @@ const history = createHistory()
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history)
 
-
-
 const store = createStore(reducers, applyMiddleware(middleware,logger, Thunk));
  
 ReactDOM.render(

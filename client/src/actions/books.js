@@ -41,9 +41,10 @@ export function addBook(book) {
                     type: 'ADD_BOOK',
                     payload: response.data
                 });
+                dispatch(push('/'))
             }).catch(errors => {
                 console.log(errors.message);
-            })
+            });
     }
 }
 
@@ -67,8 +68,8 @@ export function updateBook(book) {
                     type: 'UPDATE_BOOK',
                     payload: response.data
                 });
+                dispatch(push('/userbooks'))
             });
-            dispatch(push('/userbooks'))
     }
 }
 
@@ -79,6 +80,7 @@ export function deleteBook(BookId) {
                 dispatch({
                     type: 'DELETE_BOOK'
                 });
+                dispatch(push('/userbooks'))
             });
     }
 } 
